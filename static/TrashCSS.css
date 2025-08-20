@@ -1,0 +1,229 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Body */
+  body {
+    background: url('images/greysquare.png') repeat;
+    background-size: 100px 100px;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    backdrop-filter: blur(3px);
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  }
+  
+  /* Animación de fondo optimizada */
+  @keyframes moveBackground {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+  }
+  
+  /* Header */
+  header {
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    transform: rotate(-2deg);
+    animation: rotateText 3s linear infinite;
+  }
+  
+  @keyframes rotateText {
+    0% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+    100% { transform: rotate(-1deg); }
+  }
+  
+  /* Container */
+  .container {
+    max-width: 800px;
+    width: 90%; /* Hace que el contenedor sea responsivo */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto; /* Centra el contenedor */
+  }
+  
+  /* Animación de fade-in */
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn ease-in 1s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Retardos para los elementos */
+  .delay-1 { animation-delay: 0.5s; } /* 0.5 segundos de retardo */
+  .delay-2 { animation-delay: 1s; }   /* 1 segundo de retardo */
+  .delay-3 { animation-delay: 1.5s; } /* 1.5 segundos de retardo */
+  .delay-4 { animation-delay: 2s; }   /* 2 segundos de retardo */
+  
+  /* Intro Section */
+  .intro p {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  /* Quiz Section */
+  .quiz-section h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+  
+  #quiz-container {
+    margin-bottom: 2rem;
+  }
+  
+  #answers-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Permite que los botones se ajusten en pantallas pequeñas */
+  }
+  
+  .scale-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    font-size: 1rem;
+  }
+  
+  .scale-button:hover {
+    transform: scale(1.1);
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .scale-button.selected {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+  }
+  
+  /* Buttons */
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    transition: 0.3s;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+  }
+  
+  /* Results Section */
+  #results-section {
+    margin-top: 2rem;
+  }
+  
+  #output-text {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Chart Section */
+  #chart-section {
+    margin-top: 2rem;
+  }
+  
+  /* Tips Section */
+  #tips-section {
+    margin-top: 2rem;
+  }
+  
+  #tips-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #tips-list li {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2rem; /* Tamaño de fuente más pequeño en móviles */
+    }
+  
+    .container {
+      width: 95%; /* Más ancho en pantallas pequeñas */
+      padding: 15px;
+    }
+  
+    .scale-button {
+      width: 40px;
+      height: 40px;
+      font-size: 0.9rem;
+    }
+  
+    .button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  
+    #tips-list li {
+      font-size: 1rem;
+    }
+  }
+  /* Fondo inicial */
+  body {
+    background: linear-gradient(to bottom, #f0f0f0, #d0d0d0); /* Fondo claro inicial */
+    transition: background 1s ease; /* Transición suave para el cambio de fondo */
+  }
+  
+  /* Fondo oscuro (se aplicará dinámicamente) */
+  body.darkened {
+    background: linear-gradient(to bottom, #1a1919, #000); /* Fondo oscuro */
+  }
+  

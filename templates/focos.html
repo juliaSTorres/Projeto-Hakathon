@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lâmpadas - EcoQuiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='focostyle.css') }}">
+  <script src="{{ url_for('static', filename='focoscript.js') }}" defer></script>
+</head>
+<body id="body">
+  <div>
+    <h1>LÂMPADAS</h1>
+    <p>Você sabia que as lâmpadas incandescentes são o tipo mais comum de lâmpada no mundo?</p>
+    <p>Apesar disso, cada uma gera 152 lb de emissões de CO₂ por ano.</p>
+    <p>Vamos ver como os seus hábitos com lâmpadas impactam o mundo.</p>
+
+    <!-- Escolha do tipo de lâmpada com imagens -->
+    <p>Qual é o tipo de lâmpada mais utilizado na sua casa?</p>
+    <div class="img-container">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='images/Incandescent.png') }}" 
+             alt="Incandescente" width="150" class="image-button" onclick="selectLamp('Incandescente')">
+        <p><strong>Incandescente</strong></p>
+        <small>As mais antigas e comuns. Baratas, mas consomem muita energia e têm vida útil curta.</small>
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='images/Halogen.png') }}" 
+             alt="Halógena" width="150" class="image-button" onclick="selectLamp('Halógena')">
+        <p><strong>Halógena</strong></p>
+        <small>Uma evolução da incandescente. Mais eficientes e com luz brilhante, mas ainda gastam bastante energia.</small>
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='images/CFL.png') }}" 
+             alt="CFL" width="150" class="image-button" onclick="selectLamp('CFL')">
+        <p><strong>Fluorescente Compacta (CFL)</strong></p>
+        <small>Economizam até 70% comparado às incandescentes. Duram mais, mas demoram para acender totalmente.</small>
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='images/LED.png') }}" 
+             alt="LED" width="150" class="image-button" onclick="selectLamp('LED')">
+        <p><strong>LED</strong></p>
+        <small>A mais eficiente atualmente. Consome pouca energia, tem longa vida útil e boa iluminação.</small>
+      </div>
+    </div>
+
+    <!-- Formulário integrado com Flask -->
+    <div class="form-container">
+      <h2>Compartilhe seus hábitos</h2>
+      <form action="/salvar_dados" method="POST" class="interactive-form">
+        <label for="nLampadas">Quantidade de Lâmpadas:</label>
+        <input type="number" name="nLampadas" id="nLampadas" min="0" required>
+
+        <label for="nHoras">Horas por dia em que ficam ligadas:</label>
+        <input type="number" name="nHoras" id="nHoras" min="0" required>
+
+        <label for="tipo">Tipo de Lâmpada:</label>
+        <select name="tipo" id="tipo" required>
+          <option value="Incandescente">Incandescente</option>
+          <option value="Halógena">Halógena</option>
+          <option value="CFL">Fluorescente Compacta (CFL)</option>
+          <option value="LED">LED</option>
+        </select>
+
+        <button type="submit">Enviar Resposta</button>
+      </form>
+    </div>
+
+    {% if resultado %}
+    <!-- Resultado do usuário -->
+    <div class="form-container result-card">
+      <h2>Seu resultado</h2>
+      <div class="result-grid">
+        <div><span class="label">Tipo:</span> <span class="value">{{ resultado.tipo }}</span></div>
+        <div><span class="label">Potência típica:</span> <span class="value">{{ resultado.power_w }} W</span></div>
+        <div><span class="label">Qtd. lâmpadas:</span> <span class="value">{{ resultado.nLampadas }}</span></div>
+        <div><span class="label">Horas/dia:</span> <span class="value">{{ resultado.nHoras }}</span></div>
+        <div><span class="label">Consumo anual estimado:</span> <span class="value">{{ "%.2f"|format(resultado.consumo_kwh_ano) }} kWh</span></div>
+        <div><span class="label">Custo (R$/kWh):</span> <span class="value">{{ "%.2f"|format(resultado.custo_kwh) }}</span></div>
+      </div>
+      <div class="result-total">
+        Gasto anual estimado: <strong>R$ {{ "%.2f"|format(resultado.gasto) }}</strong>
+      </div>
+      <p class="result-tip">* Valores estimados com base em potências típicas por tipo de lâmpada e custo médio de energia.</p>
+    </div>
+    {% endif %}
+
+    <!-- Estatísticas globais -->
+    <div class="form-container">
+      <h2>Estatísticas de todas as respostas ja registradas</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Média de Lâmpadas</th>
+            <th>Média de Horas/Dia</th>
+            <th>Média de Gasto (R$)</th>
+            <th>Total de Respostas</th>
+            <th>Soma de Gastos (R$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ "%.2f"|format((dados.mediaLampadas or 0)) }}</td>
+            <td>{{ "%.2f"|format((dados.mediaHoras or 0)) }}</td>
+            <td>{{ "%.2f"|format((dados.mediaGasto or 0)) }}</td>
+            <td>{{ (dados.totalRespostas or 0) }}</td>
+            <td>{{ "%.2f"|format((dados.somaGasto or 0)) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='focoscript.js') }}" defer></script>
+
+  <script>
+    // Preenche automaticamente o select quando o usuário clica numa imagem
+    function selectLamp(tipo) {
+      const select = document.getElementById('tipo');
+      if (select) {
+        select.value = tipo;
+      }
+    }
+  </script>
+</body>
+</html>

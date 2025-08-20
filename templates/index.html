@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/../static/index_styles.css">
+</head>
+<body>
+    <header class = "rotate-text">
+        <img src="/../static/images/title.png" alt="" width="1000" height = auto>
+    </header>
+    <div>
+        <img src="/../static/images/botonagua.png" alt="" class="image-button" onclick="window.location.href='{{ url_for('water') }}'">
+        <img src="/../static/images/botonbasura.png" alt="" class="image-button" onclick="window.location.href='{{ url_for('garbage') }}'">
+        <img src="/../static/images/botonfoco.png" alt="" class="image-button" onclick="window.location.href='{{ url_for('electricity') }}'">
+    </div>
+    <div>
+        <img src="/../static/images/botonvehiculos.png" alt="" class="image-button" onclick="window.location.href='{{ url_for('vehicles') }}'">
+        <img src="/../static/images/botonplanta.png" alt="" class="image-button" onclick="window.location.href='{{ url_for('plants') }}'">
+    </div>
+</body>
+</html>

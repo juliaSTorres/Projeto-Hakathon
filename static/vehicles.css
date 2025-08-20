@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.slider{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 100%;
+}
+
+.slider-inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+}
+
+.item{
+    flex: none;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item > * {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+}
+
+.front {
+    z-index: 3;
+    bottom: 0;
+    margin-bottom: 10px;
+}
+
+.middle {
+    z-index: 1;
+    bottom: 0;
+}
+
+.background {
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
+}
+
+.car {
+    position: relative;
+    z-index: 4;
+    top: 330px;
+}
+
+.info {
+    align-self: flex-start;
+    padding-top: 130px;
+    margin-left: 50px;
+    z-index: 7;
+    font-size: 12px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+
+}
+
+.title {
+    align-self: flex-start;
+    padding: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.dropdown-overlay {
+    position: fixed;
+    z-index: 9;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 1;
+  }
+
+.instructions {
+    height: 100vh;
+    width: 100wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visible {
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
